@@ -1,27 +1,25 @@
 # SAS-project-template repository
 
-* Contains template for a SAS project.
-* `agalecki` is a primary maintainer of this repo
+* Contains programs to update master file for 2020 data freeze.
+* `natilton` is a primary maintainer of this repo
 
-## Installation
+## Sections of this Repository
 
-1. Two options to download this repo
+1. Update Cognitive Data
+   File: `New Cognitive Data 200305.sas`
 
-   a. use `release` tab for this repository and download repo.
+2. Append NOMAS Data
+   File: 
 
-   b. use link from _Releases history_ section
-
-2. On your desktop copy `./macros/SAS_work_directory.sas` file to `C:\Users\Public` folder 
-
-## Testing
-
-1. Before making any changes in the downloaded file run `00template_prog.sas`
-
-
+3. Replace Mortality Data
+   File:
+   
+4. Update CHS Ethnicity
+   File:
 
 ## Releases history
 
-* [v1.0](https://github.com/UM-COG-HSR/SAS-project-template/archive/v1.0.zip) released on Feb. 28th, 2020
+* 
 
   
    
