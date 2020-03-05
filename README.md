@@ -1,4 +1,4 @@
-# SAS-project-template repository
+# BP-COG_Data_Freeze_MasterFile
 
 * Contains programs to update master file for 2020 data freeze.
 * `natilton` is a primary maintainer of this repo
