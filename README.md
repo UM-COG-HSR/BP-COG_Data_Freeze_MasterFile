@@ -5,21 +5,13 @@
 
 ## Sections of this Repository
 
-1. Update Cognitive Data
+1. Update Cognitive Data, Create new Death variable, Update CHS Ethnicity
 
    File: `New Cognitive Data 200311.sas`
 
 2. Append NOMAS Data
 
    File: 
-
-3. Replace Mortality Data
-
-   File:
-   
-4. Update CHS Ethnicity
-
-   File:
 
 ## Releases history
 
