@@ -1,5 +1,6 @@
+
 /************************************************************************************************************
-* Program: New Cognitive Data.SAS            														*
+* Program: New Cognitive Data 200311.SAS            														*
 * Folder: S:\Intmed_Rsrch2\GenMed\Restricted\BP COG\Aim 1\Data Management\Data\Freeze2020_Master\SAS Data   *              						*
 * Author: Nick Tilton                          																*
 * Created: 03/13/20                            																*
@@ -246,37 +247,33 @@ merge tmp_stroke (in=in1) tmp_death2 (in=in2) tmp_demo;
 by id;
 if in1 or in2;
 newid=compress(id||'nomas');
-studyname2='nomas';
-strokedt2=EVENTDATE;
-strokeinc2=1;
-if STROKETYPE=1 then stroketype2=1;
-if STROKETYPE=2 then stroketype2=2;
-if STROKETYPE=3 then stroketype2=3;
-if STROKETYPE=4 then stroketype2=4;
-ttostk2 = intck('day',BDATE,EVENTDATE);
+studyname='nomas';
+strokedt=EVENTDATE;
+strokeinc=1;
+if STROKETYPE=1 then stroketype=1;
+if STROKETYPE=2 then stroketype=2;
+if STROKETYPE=3 then stroketype=3;
+if STROKETYPE=4 then stroketype=4;
+ttostk = intck('day',BDATE,EVENTDATE);
 *Fatal stroke (definite);
 if in2 then do;
-	strokefatal2=1;
-	if missing(strokedt2) then do; 
-		strokedt2=DEATHDATE;
-		ttostk2 = intck('day',BDATE,DEATHDATE);
+	strokefatal=1;
+	if missing(strokedt) then do; 
+		strokedt=DEATHDATE;
+		ttostk = intck('day',BDATE,DEATHDATE);
 	end;
 end;
-keep newid studyname2 strokeinc2 ttostk2 strokedt2 stroketype2 strokefatal2;
-format strokedt2 mmddyy10.;
+keep newid studyname strokeinc ttostk strokedt stroketype strokefatal;
+format strokedt mmddyy10.;
 run;
 
-proc sort data=nomas_stroke; by newid; run;
-proc sort data=mem.stroke; by newid; run;
+data mem.stroke;
+set mem.stroke;
+if studyname='nomas' then delete;
+run; 
 
 data mem.stroke;
-merge mem.stroke (in=in1) nomas_stroke (in=in2); 
-by newid;
-if in2 then do;
-	strokeinc=strokeinc2; strokedt=strokedt2; ttostk=ttostk2; stroketype=stroketype2; strokefatal=strokefatal2; studyname=studyname2;
-end;
-keep newid studyname strokeinc strokedt ttostk stroketype strokefatal;
-format strokedt mmddyy10.;
+set mem.stroke nomas_stroke;
 run;
 
 proc sort data=nomas_death; by newid deathdt2 ttodeath2;
@@ -287,12 +284,13 @@ if first.newid then output;
 drop studyname2 dead2;
 run;
 
-proc sort data=nomas_stroke; by newid strokedt2 ttostk2;
+proc sort data=nomas_stroke; by newid strokedt ttostk;
 data tmp_stroke3; 
 set nomas_stroke; 
 by newid;
+strokedt2=strokedt; ttostk2=ttostk; stroketype2=stroketype; strokefatal2=strokefatal;
 if first.newid then output;
-drop studyname2 strokeinc2;
+keep newid strokedt2 ttostk2 stroketype2 strokefatal2;
 run;
 
 proc sort data=tmp_newcog; by newid daysfromvisit1; run;
