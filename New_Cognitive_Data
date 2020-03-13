@@ -47,7 +47,7 @@ filename fx "&SAS_work_dir/_load_repo_assets.inc";
 
 %let BPCOGpath = S:\Intmed_Rsrch2\GenMed\Restricted\BP COG;
 
-%let OutDataPath = &BPCOGpath.\Aim 1\Data Management\Data\Freeze2020_Master\SAS Data;
+%let OutDataPath = &BPCOGpath.\Aim 1\Data Management\Data\Freeze2020_Master\SAS Master Data;
 %let InDataPath = &BPCOGpath.\Aim 1\Hispanic vs White\New Cog Data 20_01_04;
 %let FormatPath = &BPCOGpath.\Aim 1\Data Management\Data\formats;
 %let CohortPath = &BPCOGpath.\Original Cohort Files;
